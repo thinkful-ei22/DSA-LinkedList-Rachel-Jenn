@@ -25,8 +25,24 @@ function main() {
   SLL.insertLast('Dup');
   SLL.insertLast('Dup');
   SLL.insertLast('Dup');
+  SLL.insertLast('Eleven');
+  SLL.insertLast('Twelve');
 
-  console.log(JSON.stringify(SLL, null, 2));
+
+
+  const cycleList = new LinkedList();
+  cycleList.insertFirst('Apollo');
+  cycleList.insertLast('Boomer');
+  cycleList.insertLast('Helo');
+  function makeCycle(list) {
+    let item = list.head;
+    while (item.next !== null) {
+      item = item.next;
+    }
+    item.next = list.head;
+  }
+  makeCycle(cycleList);
+  // console.log(JSON.stringify(cycleList, null, 2));
 
 
   //Display list
@@ -103,14 +119,6 @@ function main() {
   // console.log(WhatDoesThisProgramDo(SLL));
 
   /* 
-  find node who's current pointer is null.
-  set the pointer to that nodes' previous node
-  do recursion through to the head node.
-  set the head node's next to null
-  All pointers point backwards, the list is reversed
-  */
-
-  /* 
   keep track of current
   keep track of previous
   every time we move through, we set the current pointer to the previous node
@@ -147,8 +155,71 @@ function main() {
     return JSON.stringify(list, null, 2);
 
   }
-  console.log(reverseList(SLL));
+  // console.log(reverseList(SLL));
 
+  //Third from the end
+  function thirdFromEnd(list){
+    let current = list.head;
+    let twoBefore ={};
+    let threeBefore ={};
+    let oneBefore={};
+    while (current.next !== null) {
+      threeBefore = twoBefore;
+      twoBefore = oneBefore;
+      oneBefore = current;
+      current = current.next;
+    }
+
+    return threeBefore.value;
+  }
+  // console.log(thirdFromEnd(SLL));
+
+  //Middle of a list
+  function middleOfList(list){
+    let forwardItem = list.head;
+    let count=0;
+    while(forwardItem.next !== null){
+      forwardItem =forwardItem.next;
+      count++;
+    }
+    const middlePosition = Math.round((count)/2);
+    let middleItem = list.head;
+    if(middlePosition%2 === 0){
+      return 'The list is even, there is no middle.';
+    }
+    else{
+      for(let i=0; i< middlePosition; i++){
+        middleItem = middleItem.next;
+      }
+      return middleItem.value;
+    }
+    
+    
+  }
+  // console.log(middleOfList(SLL));
+
+  //Cycle in a list
+
+  //A -> B -> C -> D -> B
+
+  //if we hit an item more than once its a cycle
+
+  function cycle(list){
+    let current = list.head;
+    let visited =[];
+
+    while(current.next !== null){
+      visited.push(current);
+      current = current.next;
+      if(current.next===null){
+        return false;
+      }
+      else if(visited.includes(current.next)){
+        return true;
+      }
+    }    
+  }
+  console.log(cycle(SLL));
 }
 
 main();
