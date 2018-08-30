@@ -23,6 +23,28 @@ function main(){
   SLL.remove('Tauhida');
   console.log(JSON.stringify(SLL));
   
+  //Display list
+  function display(list) {
+    console.log(JSON.stringify(list, null, 2));
+  }
+  display(SLL);
+
+  //Return size of linked list
+  function size(list) {
+    if (list.head === null) {
+      return 0;
+    } else {
+      let tempNode = list.head;
+      let counter = 0;
+      while (tempNode.next !== null) {
+        tempNode = tempNode.next;
+        counter++;
+      };
+      console.log('the size is', counter + 1);
+    }
+  }
+  size(SLL);
 }
 
 main();
+
