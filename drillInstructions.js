@@ -1,33 +1,19 @@
 /* 
 
 
-Implement a function called insertAfter() in the class that inserts a new node after a node containing the key
-Implement a function called insertAt() that inserts an item at a specific position in the linked list
-Add Athena before Boomer using your insertBefore() function
-Add Hotdog after Helo using the insertAfter() method
-Using the insertAt() method insert Kat in the 3rd position of the list
-Remove Tauhida from the list
-Supplemental functions for linked list
-Implement the following functions that operate on your linked list class. Note that these should be free functions instead of methods of the linked list class, so implement them outside the linked list class. Test each function using the list created in exercise 1
-
-display: displays the linked list.
-size: returns the size of the linked list.
-isEmpty: finds if the list is empty or not (without using the size() function)
-findPrevious: finds the node before the item you are looking for
-findLast: returns the last node in the linked list
 Mystery program
 Analyze the following function (without running it in an IDE) to determine what problem it is trying to solve. What is the runtime of this algorithm?
 
 function WhatDoesThisProgramDo(lst){
-    let current = lst.head;
-    while(current !== null){
-        let newNode = current;
-        while (newNode.next !== null) {
-            if (newNode.next.value === current.value) {
-                newNode.next = newNode.next.next;
+    let current = lst.head;  //start at the head
+    while(current !== null){ //current exists
+        let newNode = current; 
+        while (newNode.next !== null) { //new node isnt the last node
+            if (newNode.next.value === current.value) { //if the node after new Node's value has the same value...
+                newNode.next = newNode.next.next; //delete it
             }
             else{
-                newNode = newNode.next;
+                newNode = newNode.next; //go to next one
             }
         }
         current = current.next;

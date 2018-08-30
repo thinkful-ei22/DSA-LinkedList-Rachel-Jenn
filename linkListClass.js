@@ -58,16 +58,12 @@ class LinkedList {
 
   }
 
-  // go to the third position by travelling 2 nodes down and then insert using insertAfter
-  // traverse by going to Next node .. so traverse twice. 
-
-
   insertAt(position, item) {
     if (position < 0) {
       throw new Error('Position error');
     } 
     if (position === 0) {
-      this.insertFirst(item) 
+      this.insertFirst(item); 
     } else {
       const node = this._findNthElement(position - 1);
       const newNode = new _Node(item, null);
@@ -82,9 +78,9 @@ class LinkedList {
     let node = this.head;
     for (let i=0; i < position; i++) {
       node = node.next;
-    };
+    }
     return node;
-  };
+  }
 
   find(item) {
     let currNode = this.head;
