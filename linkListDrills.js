@@ -1,7 +1,7 @@
 const LinkedList = require('./linkListClass');
 
-function main(){
-//create a linked list called SLL
+function main() {
+  //create a linked list called SLL
   const SLL = new LinkedList();
   //and add the following items in your linked list
   SLL.insertFirst('Apollo');
@@ -18,7 +18,7 @@ function main(){
   //insert after
   SLL.insertAfter('Hotdog', 'Helo');
   //insert at
-  SLL.insertAt(3,'Kat');
+  SLL.insertAt(3, 'Kat');
   //remove
   SLL.remove('Tauhida');
 
@@ -27,8 +27,8 @@ function main(){
   SLL.insertLast('Dup');
 
   console.log(JSON.stringify(SLL, null, 2));
- 
-  
+
+
   //Display list
   function display(list) {
     return JSON.stringify(list, null, 2);
@@ -50,22 +50,22 @@ function main(){
     }
   }
   size(SLL);
-  function isEmpty(list){
-    if(!list.head){
+  function isEmpty(list) {
+    if (!list.head) {
       return true;
     }
     return false;
   }
   // console.log(isEmpty(SLL));
 
-  function findPrevious(list, item){
-    if(list.head.value===item){
+  function findPrevious(list, item) {
+    if (list.head.value === item) {
       return null;
     }
     let current = list.head;
     let previous = list.head;
 
-    while((current !== null) && (current.value !== item)){
+    while ((current !== null) && (current.value !== item)) {
       previous = current;
       current = current.next;
     }
@@ -74,9 +74,9 @@ function main(){
 
   // console.log(findPrevious(SLL, 'Hotdog'));
 
-  function findLast(list){
+  function findLast(list) {
     let item = list.head;
-    while(item.next !== null){
+    while (item.next !== null) {
       item = item.next;
     }
     return item.value;
@@ -85,15 +85,15 @@ function main(){
   // console.log(findLast(SLL));
   // Mystery program
   // Analyze the following function (without running it in an IDE) to determine what problem it is trying to solve. What is the runtime of this algorithm?
-  function WhatDoesThisProgramDo(lst){ //this program deletes duplicates that are next to each other.  it is O(n^2)
+  function WhatDoesThisProgramDo(lst) { //this program deletes duplicates that are next to each other.  it is O(n^2)
     let current = lst.head;  //start at the head
-    while(current !== null){ //current exists
-      let newNode = current; 
+    while (current !== null) { //current exists
+      let newNode = current;
       while (newNode.next !== null) { //new node isnt the last node
         if (newNode.next.value === current.value) { //if the node after new Node's value has the same value...
           newNode.next = newNode.next.next; //delete it
         }
-        else{
+        else {
           newNode = newNode.next; //go to next one
         }
       }
@@ -101,6 +101,54 @@ function main(){
     }
   }
   // console.log(WhatDoesThisProgramDo(SLL));
+
+  /* 
+  find node who's current pointer is null.
+  set the pointer to that nodes' previous node
+  do recursion through to the head node.
+  set the head node's next to null
+  All pointers point backwards, the list is reversed
+  */
+
+  /* 
+  keep track of current
+  keep track of previous
+  every time we move through, we set the current pointer to the previous node
+  
+  newPointer -> current.next -> reverseSoFar -> current -> newPointer
+
+  A B C D
+  We start at A, which is current. then set newPointer to B, then set current.Next to null. 
+  Current is A, so now A is the last one, B is the new current.
+ 
+  B C D A
+  Start at B, which is current, set newPointer to C, then set current.Next to A. 
+  Current is currently B, so now B is the last one, next to A. reverse so far is A. 
+
+  C D B A
+  ReverseSoFar is B. C is current. set newPointer to D, then current.Next is B.
+  current (C) so now C is next to B. Reverse so far now becomes C.
+
+  D C B A
+
+  */
+  function reverseList(list) {
+    let current = list.head;
+    let reverseSoFar = null;
+    
+    while (current !== null) {
+      let newPointer = current.next;
+      current.next = reverseSoFar;
+      reverseSoFar = current;
+      current = newPointer;
+
+    }
+    list.head = reverseSoFar;
+    return JSON.stringify(list, null, 2);
+
+  }
+  console.log(reverseList(SLL));
+
 }
 
 main();
