@@ -44,6 +44,48 @@ class LinkedList {
     previousNode.next = new _Node(newItem, currNode);   
   }
 
+  insertAfter(newItem, currentItem) {
+    if (!this.head) {
+      return null;
+    }
+    let currNode = this.head;
+
+    while ((currNode !== null) && (currNode.value !== currentItem)) {
+      currNode = currNode.next;
+    }
+    let newNext = currNode.next;
+    currNode.next = new _Node(newItem, newNext);
+
+  }
+
+  // go to the third position by travelling 2 nodes down and then insert using insertAfter
+  // traverse by going to Next node .. so traverse twice. 
+
+
+  insertAt(position, item) {
+    if (position < 0) {
+      throw new Error('Position error');
+    } 
+    if (position === 0) {
+      this.insertFirst(item) 
+    } else {
+      const node = this._findNthElement(position - 1);
+      const newNode = new _Node(item, null);
+      
+      newNode.next = node.next;
+      node.next = newNode;
+    }
+  }
+
+  //finds by position not by item name
+  _findNthElement(position) {
+    let node = this.head;
+    for (let i=0; i < position; i++) {
+      node = node.next;
+    };
+    return node;
+  };
+
   find(item) {
     let currNode = this.head;
     if (!this.head) {

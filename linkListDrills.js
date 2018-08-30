@@ -15,7 +15,14 @@ function main(){
   SLL.remove('Starbuck');
   //insert before
   SLL.insertBefore('Athena', 'Boomer');
+  //insert after
+  SLL.insertAfter('Hotdog', 'Helo');
+  //insert at
+  SLL.insertAt(3,'Kat');
+  //remove
+  SLL.remove('Tauhida');
   console.log(JSON.stringify(SLL));
+  
 }
 
 main();
