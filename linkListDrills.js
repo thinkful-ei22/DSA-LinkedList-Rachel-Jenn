@@ -219,7 +219,10 @@ function main() {
       }
     }    
   }
-  console.log(cycle(SLL));
+  //console.log(cycle(SLL));
+
+  
+
 }
 
 main();
