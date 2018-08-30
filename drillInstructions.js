@@ -1,13 +1,6 @@
 /* 
 
-Create a Linked list class
-Walk through the Linked list code in the curriculum and understand it well. Then write a linked list class and with its core functions (insertFirst, insertLast, remove, find) from scratch.
 
-Creating a singly linked list
-Write a function main. Within the function, using the linked list class above, create a linked list called SLL and add the following items in your linked list. Apollo, Boomer, Helo, Husker, Starbuck
-Add Tauhida to the list
-Remove squirrel from the list
-Implement a function called insertBefore() in the class that inserts a new node before a given node containing a key
 Implement a function called insertAfter() in the class that inserts a new node after a node containing the key
 Implement a function called insertAt() that inserts an item at a specific position in the linked list
 Add Athena before Boomer using your insertBefore() function
